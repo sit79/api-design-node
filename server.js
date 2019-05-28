@@ -1,15 +1,23 @@
-// TODO: create a basic server with express
-// that will send back the index.html file on a GET request to '/'
-// it should then send back jsonData on a GET to /data
 const express = require("express")
-const fs = require("fs")
+const chalk = require("chalk")
+
 const app = express()
 
 const PORT = 3000
 const jsonData = { count: 12, message: "hey" }
 
 app.get("/", (req, res) => {
-  console.log("success")
+  try {
+    res.sendFile(__dirname + "/index.html")
+  } catch (error) {
+    res.status(500).send(error)
+  }
 })
 
-app.listen(PORT)
+app.get("/data", (req, res) => {
+  res.json(jsonData)
+})
+
+app.listen(PORT, () => {
+  console.log(chalk.green(`listening on http://localhost:${PORT}`))
+})
