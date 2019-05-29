@@ -13,8 +13,8 @@ module.exports = {
     ecmaVersion: 2018
   },
   rules: {
-    "no-console": ["error"],
+    "no-console": ["warn"],
     quotes: ["error", "double"],
     semi: [2, "never"]
   }
-};
+}
